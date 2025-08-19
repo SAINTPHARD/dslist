@@ -23,9 +23,15 @@ public class Game {
 	@Column(name = "game_year") // Anotação para definir o nome da coluna no banco de dados
 	private Integer year;
 	private String genre;
-	private String platform;
+	private String platforms;
+	private Double score;
 	private String imgUrl;
+	
+	// Anotação para definir o tipo da coluna como TEXT no banco de dados
+	@Column(columnDefinition = "TEXT") // Anotação para definir o tipo da coluna como TEXT no banco de dados
 	private String shortDescription;
+	// Anotação para definir o tipo da coluna como TEXT no banco de dados
+	@Column(columnDefinition = "TEXT") // Anotação para definir o tipo da coluna como TEXT no banco de dados
 	private String longDescription;
 	
 
@@ -38,7 +44,8 @@ public class Game {
 		this.title = title;
 		this.year = year;
 		this.genre = genre;
-		this.platform = platform;
+		this.platforms = platforms;
+		this.score = score;
 		this.imgUrl = imgUrl;
 		this.shortDescription = shortDescription;
 		this.longDescription = longDescription;
@@ -68,11 +75,18 @@ public class Game {
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-	public String getPlatform() {
-		return platform;
+	public String getPlatforms() {
+		return platforms;
 	}
-	public void setPlatform(String platform) {
-		this.platform = platform;
+	public void setPlatforms(String platforms) {
+		this.platforms = platforms;
+	}
+	
+	public Double getScore() {
+		return score;
+	}
+	public void setScore(Double score) {
+		this.score = score;
 	}
 	public String getImgUrl() {
 		return imgUrl;
