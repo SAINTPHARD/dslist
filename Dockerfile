@@ -1,14 +1,14 @@
-# Usa uma imagem base com o OpenJDK, uma versão leve do Java
-FROM openjdk:17-jdk-slim
-
-# Define um diretório de trabalho dentro do container
+# ESTÁGIO 1: Build (Compilação com Maven e JDK 21)
+FROM maven:3-openjdk-21 AS build
 WORKDIR /app
+COPY pom.xml .
+RUN mvn dependency:go-offline
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-# Copia o arquivo JAR da sua aplicação para o container
-COPY target/*.jar app.jar
-
-# Expõe a porta que a sua aplicação usa
+# ESTÁGIO 2: Run (Execução com JRE 21)
+FROM openjdk:21-jre-slim
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
-
-# Define o comando que será executado quando o container for iniciado
 ENTRYPOINT ["java", "-jar", "app.jar"]
