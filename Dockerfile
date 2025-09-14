@@ -1,7 +1,7 @@
 # =======================================================
-# ESTÁGIO 1: Build (Compilação com Maven e JDK 21)
+# ESTÁGIO 1: Build com Eclipse Temurin (JDK 21)
 # =======================================================
-FROM maven:3-openjdk-21 AS build
+FROM maven:3.9-eclipse-temurin-21 AS build
 
 # Define o diretório de trabalho
 WORKDIR /app
@@ -17,9 +17,9 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # =======================================================
-# ESTÁGIO 2: Run (Execução com JRE 21) - TAG CORRIGIDA
+# ESTÁGIO 2: Run com Eclipse Temurin (JRE 21)
 # =======================================================
-FROM openjdk:21-slim
+FROM eclipse-temurin:21-jre
 
 # Define o diretório de trabalho
 WORKDIR /app
