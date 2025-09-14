@@ -17,9 +17,9 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # =======================================================
-# ESTÁGIO 2: Run (Execução com JRE 21) - LINHA CORRIGIDA
+# ESTÁGIO 2: Run (Execução com JRE 21) - TAG CORRIGIDA
 # =======================================================
-FROM openjdk:21-jre
+FROM openjdk:21-slim
 
 # Define o diretório de trabalho
 WORKDIR /app
